@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Game</title>
+</head>
+<body>
+
+<style type="text/css">
+	
+	.wrapper{
+		width: 400px;
+		height: 267px;
+		margin: 20px auto;	
+	}
+	#bar{
+		width: 400px;
+		height: 20px;
+		margin: 0px auto;
+		border: 1px solid #666;
+	}
+		
+</style>
+
+		<script type="text/javascript">
+		
+			window.life = 100; //Жизнь стены
+			window.state = 0;  //Номер текущего состояния
+			window.break_w = 0;  //Счетчик для определения момента смены картинки
+			
+					//Массив с картинкоми состояния стены
+			var wall_state = [
+			
+				"https://pp.vk.me/c836533/v836533601/ba19/MlCjIPyZAj0.jpg",			
+				"https://pp.vk.me/c836533/v836533601/ba20/WIKI92FQbSA.jpg",		
+				"https://pp.vk.me/c836533/v836533601/ba27/NNXEghfiZNE.jpg",		
+				"https://pp.vk.me/c836533/v836533601/ba2e/iF0pL0vgeA8.jpg",		
+				"https://pp.vk.me/c836533/v836533601/ba35/UpCBNCugEh4.jpg",		
+				"https://pp.vk.me/c836533/v836533601/ba3c/cjG7DRRv308.jpg",		
+				"https://pp.vk.me/c836533/v836533601/ba43/yTdGto0gSdE.jpg",		
+				"https://pp.vk.me/c836533/v836533601/ba4a/oiSeykZJAp0.jpg",		
+				"https://pp.vk.me/c836533/v836533601/ba51/mAlYjS2ZQ8Q.jpg",		
+				"https://pp.vk.me/c836533/v836533601/ba58/vXukc3jGTD4.jpg",	
+				"https://pp.vk.me/c836533/v836533601/ba5f/RQ03zJvpIfM.jpg"					
+			];
+		
+			function breakWall(num){
+
+					//Если нажать на стену
+				if(num == 1){		
+				
+						//Если стена разружена
+					if(life == 0){
+						alert('Вы в МАИ');
+						document.getElementById('bar').style.display = 'none';
+						document.getElementById('return').style.display = 'block';
+					}	
+					
+					else{
+						life--;
+						polosa.width -=4;
+						break_w++;
+						
+						if(break_w == 5){
+							state++;
+							document.getElementById('image').src = wall_state[state];
+							break_w = -5;
+							
+						}
+					}
+					
+				}
+				
+					//Начать заново
+				if(num == 0){
+					life = 100;
+					polosa.width = 400;
+					break_w = 0;
+					state = 0;
+					document.getElementById('image').src = wall_state[state];
+					document.getElementById('return').style.display = 'none';
+					document.getElementById('bar').style.display = 'block';
+					
+				
+				}
+			}		
+
+								//Выводим картинки
+			document.write('<div class="wrapper"><img id="image" onclick="breakWall(1)" style="cursor: pointer;" id="wall" src="' + wall_state[0] + '"><button class="myButton" onclick="breakWall(0)" style="display: none; margin: 5px auto;" id="return">Попробовать еще раз</button></div>');
+			document.write('<div id="bar"><img id="polosa" style="height: 20px;" src="http://bit.ly/2fvHH4R"></div>');	
+		</script>
+
+		<center><br>
+			<a href="https://mai.ru/" class="myButton">МАИ</a> 
+		</center>
+			
+</body>
+</html>
